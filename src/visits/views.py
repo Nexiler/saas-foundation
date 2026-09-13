@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def homepage_view(request):
-    # Returns the home.html template
-    return render(request, "homepage.html")
+    if request.user.is_authenticated:
+        return render(request, "homepage.html")
+    else:
+        return redirect('account_login')
