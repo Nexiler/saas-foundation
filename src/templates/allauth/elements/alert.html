@@ -1,1 +1,1 @@
-{% load allauth %}<div class="alert{% if 'error' in attrs.tags or 'danger' in attrs.tags %} alert-error{% endif %}" role="alert">{% slot %}{% endslot %}</div>
+{% load allauth %}<div class="mb-4 rounded-lg p-4 text-sm {% if 'error' in attrs.tags or 'danger' in attrs.tags %}bg-red-50 text-red-800 dark:bg-gray-800 dark:text-red-400{% else %}bg-blue-50 text-blue-800 dark:bg-gray-800 dark:text-blue-400{% endif %}" role="alert">{% slot %}{% endslot %}</div>

@@ -1,3 +1,12 @@
+# Build the production Tailwind stylesheet before the Python image is created.
+# Node is absent from the runtime image.
+FROM node:22-slim AS tailwind-build
+WORKDIR /code
+COPY ./src/theme/static_src/package*.json ./theme/static_src/
+RUN npm ci --prefix ./theme/static_src
+COPY ./src /code
+RUN npm run build --prefix ./theme/static_src
+
 # Set the python version as a build-time argument
 # with Python 3.12 as the default
 ARG PYTHON_VERSION=3.12-slim-bullseye
@@ -39,6 +48,7 @@ COPY requirements.txt /tmp/requirements.txt
 
 # copy the project code into the container's working directory
 COPY ./src /code
+COPY --from=tailwind-build /code/theme/static/css/dist/styles.css /code/theme/static/css/dist/styles.css
 
 # Install the Python project requirements
 RUN pip install -r /tmp/requirements.txt

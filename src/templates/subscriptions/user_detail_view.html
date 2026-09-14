@@ -1,4 +1,4 @@
-{% extends 'dashboard/base.html' %}
+{% extends 'base.html' %}
 
 
 {% block head_title %}Your Subscription - {{ block.super }}{% endblock head_title %}
@@ -22,4 +22,3 @@
 <p>End: {{ subscription.current_period_end|timeuntil }} ({{ subscription.current_period_end }})</p>
 
 {% endblock content %}
-

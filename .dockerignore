@@ -1,0 +1,6 @@
+.git
+.venv
+__pycache__
+*.pyc
+src/local-cdn
+src/theme/static_src/node_modules
