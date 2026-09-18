@@ -1,10 +1,12 @@
 
-<!-- templates/socialaccount/authentication_error.html -->
-<h2>Third-Party Login Failure</h2>
-<p>An error occurred while attempting to login via your third-party account.</p>
+{% extends "socialaccount/base_entrance.html" %}
+{% load allauth i18n %}
 
-<!-- Temporary debugging code -->
-<pre>
-Error Info: {{ auth_error.provider }} - {{ auth_error.code }}
-Exception: {{ auth_error.exception }}
-</pre>
+{% block head_title %}{% trans "Third-Party Login Failure" %}{% endblock head_title %}
+
+{% block content %}
+  {% element h1 %}{% trans "Third-Party Login Failure" %}{% endelement %}
+  {% element p %}{% trans "An error occurred while attempting to sign in with that account. Please try again or use another sign-in method." %}{% endelement %}
+  {% url 'account_login' as login_url %}
+  {% element button href=login_url tags="secondary" %}{% trans "Back to sign in" %}{% endelement %}
+{% endblock content %}

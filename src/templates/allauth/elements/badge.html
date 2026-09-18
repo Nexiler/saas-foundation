@@ -1,1 +1,2 @@
-{% load allauth %}<span class="badge{% if 'success' in attrs.tags %} badge-success{% endif %}{% if 'warning' in attrs.tags %} badge-warning{% endif %}">{% slot %}{% endslot %}</span>
+{% load allauth %}
+<span class="ml-1 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium {% if 'success' in attrs.tags %}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200{% elif 'warning' in attrs.tags %}bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200{% else %}bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200{% endif %}">{% slot %}{% endslot %}</span>

@@ -1,1 +1,6 @@
-{% load allauth %}<section class="auth-panel"><h2 class="auth-subtitle">{% slot title %}{% endslot %}</h2>{% slot body %}{% endslot %}{% if slots.actions %}<div class="form-actions">{% for action in slots.actions %}{{ action }}{% endfor %}</div>{% endif %}</section>
+{% load allauth %}
+<section class="mt-6 rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+  <h2 class="text-lg font-semibold text-gray-900 dark:text-white">{% slot title %}{% endslot %}</h2>
+  <div class="mt-3">{% slot body %}{% endslot %}</div>
+  {% if slots.actions %}<div class="mt-4 flex flex-wrap gap-3">{% for action in slots.actions %}{{ action }}{% endfor %}</div>{% endif %}
+</section>
