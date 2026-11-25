@@ -18,10 +18,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from visits.views import homepage_view
+from visits.views import (
+    dashboard_view,
+    homepage_view,
+    staff_only_page_view,
+    user_only_page_view,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
-    path("", homepage_view, name="home"),  # Empty string '' matches the homepage
+    path("", homepage_view, name="home"),
+    path(
+        "dashboard/", dashboard_view, name="dashboard"
+    ),  # Empty string '' matches the homepage
+    path("profiles/", include("profiles.urls")),
+    path("protected/user-only/", user_only_page_view),
+    path("protected/staff-only/", staff_only_page_view),
 ]

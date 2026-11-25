@@ -1,0 +1,25 @@
+{% load allauth %}
+{% if attrs.form.non_field_errors %}
+  <div class="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300">{{ attrs.form.non_field_errors }}</div>
+{% endif %}
+{% for field in attrs.form %}
+  <div class="auth-field mb-4">
+    {% if field.field.widget.input_type == "checkbox" %}
+      <div class="flex items-center gap-2.5">
+        {{ field }}
+        <label for="{{ field.id_for_label }}" class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ field.label }}</label>
+      </div>
+    {% else %}
+      <label for="{{ field.id_for_label }}" class="mb-1.5 block text-sm font-medium text-gray-900 dark:text-white">{{ field.label }}</label>
+      {{ field }}
+    {% endif %}
+    {% if field.help_text %}
+      {% if field.name == "password" %}
+        <div class="mt-2 text-right text-xs [&_a]:font-medium [&_a]:text-blue-700 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-blue-800 dark:[&_a]:text-blue-400 dark:hover:[&_a]:text-blue-300">{{ field.help_text|safe }}</div>
+      {% else %}
+        <div class="helptext">{{ field.help_text|safe }}</div>
+      {% endif %}
+    {% endif %}
+    {% if field.errors %}<div class="mt-1.5 text-sm text-red-600 dark:text-red-400">{{ field.errors }}</div>{% endif %}
+  </div>
+{% endfor %}

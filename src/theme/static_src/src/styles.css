@@ -5,12 +5,14 @@
 @layer components {
   /* django-allauth renders Django form fields as paragraphs. Keep the
      framework markup accessible while applying the same design system. */
-  .auth-form > p {
-    @apply mb-4;
+  /* Django's built-in password validators render as a plain help-text list.
+     Present it as supporting guidance rather than a large second form. */
+  .auth-form .helptext {
+    @apply mt-2 block rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-xs leading-4 text-gray-600 dark:border-gray-700 dark:bg-gray-900/40 dark:text-gray-400;
   }
 
-  .auth-form > p > label {
-    @apply mb-2 block text-sm font-medium text-gray-900 dark:text-white;
+  .auth-form .helptext ul {
+    @apply list-disc space-y-0.5 pl-4;
   }
 
   .auth-form input:not([type="checkbox"]):not([type="radio"]),

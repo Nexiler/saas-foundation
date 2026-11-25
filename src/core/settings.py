@@ -80,6 +80,8 @@ INSTALLED_APPS = [
     "theme",
     # my apps
     "commando",
+    "profiles",
+    "subscriptions",
     "visits",
     # third-party apps
     "allauth",
@@ -164,7 +166,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Django All-Auth Config
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/dashboard/"
 ACCOUNT_LOGIN_METHODS = {"username", "email"}
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Nexiler] "
@@ -230,6 +232,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Security settings for production
 if IS_PRODUCTION:
+    print("some how is in here")
     SECURE_SSL_REDIRECT = True
     SECURE_HSTS_SECONDS = 31536000  # 1 year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
